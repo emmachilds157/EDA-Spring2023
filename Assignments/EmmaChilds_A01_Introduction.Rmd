@@ -1,6 +1,6 @@
 ---
 title: "Assignment 1: Introduction"
-author: "Student Name"
+author: "Emma Childs"
 output: pdf_document
 geometry: margin=2.54cm
 ---
@@ -40,21 +40,23 @@ Enter answers to the questions just below the >Answer: prompt.
 1. What are your previous experiences with data analytics, R, and Git? Include both formal and informal training.
 
 > Answer: 
-
+I don't have any formal experience with data analytics, R or Git. I used R a teeny, tiny bit this past summer when taking Duke's online statistics class through Coursera as a mandatory prequisite. I had no idea what it has, having never taken stats or worked with R before, so I found it quite difficult and perplexing. 
 2. Are there any components of the course about which you feel confident?
 
 > Answer: 
-
+I would not say I feel confident about anything in this course except that I know I will be supported. I've already been deeply encouraged by my interactions with classmates and instructors, so while I don't totally understand what I will be learning, it is really lovely to know it is a safe space to ask questions and figure it out!
 3. Are there any components of the course about which you feel apprehensive?
 
 > Answer: 
-
+I'm honestly apprehensive about the whole course (I say this sheepishly, as it sounds like I'm unexcited, which is not totally the case) but I've heard such wonderful reviews from folks who took it last semester. I'm hopeful it will grow my understanding of working with data in general and make me a better forester and environmental manager. I'm also hoping it will provide context for when I take statistics next semester. As someone who is not particularly tech savvy, I'm probably the most nervous about trouble shooting when I'm working alone, or getting horribly stuck on an assignment. I don't find computers, code, applications, etc. to be very intuitive and I can get easily discouraged. But I'm working to build my resiliency!
 
 ## 3) GitHub
 
 Provide a link below to your forked course repository in GitHub. Make sure you have pulled all recent changes from the course repository and that you have updated your course README file, committed those changes, and pushed them to your GitHub account. 
 
 > Answer: 
+https://github.com/emmachilds157/EDA-Spring2023.git 
 
+I think I pushed everything back to GitHub correctly, but would love for someone to double check me, or talk about it briefly after class. Thank you!
 ## 4) Knitting
 When you have completed this document, click the `knit` button.This should produce a PDF copy of your markdown document. Submit this PDF to Sakai. 
