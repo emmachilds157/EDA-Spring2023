@@ -1,6 +1,6 @@
 ---
 title: "Assignment 2: Coding Basics"
-author: "Student Name"
+author: "Emma Childs"
 output: pdf_document
 geometry: margin=2.54cm
 editor_options: 
@@ -32,6 +32,8 @@ This exercise accompanies the lessons in Environmental Data Analytics on coding 
 
 ```{r}
 #1. 
+firsthomeworkseq<-seq(1,100,4)
+firsthomeworkseq
 
 #2. 
 
