@@ -103,7 +103,7 @@ USGS.flow.data <- read.csv("./Data/Raw/USGS_Site02085000_Flow_Raw.csv",stringsAs
 #read.csv("./Data/Raw/USGS_Site02085000_Flow_Raw.csv",stringsAsFactors = TRUE)
 
 # Another option is to choose with your browser
-# read.csv(file.choose(),stringsAsFactors = TRUE)
+read.csv(file.choose(),stringsAsFactors = TRUE)
 
 # To import .txt files, use read.table rather than read.csv
 #read.table()
@@ -149,7 +149,7 @@ summary(USGS.flow.data)  #could point to column only with $
 ```
 
 What happened to blank cells in the spreadsheet when they were imported into R?
-> Answer: 
+> Answer: They are imported as NAs. 
 
 ## Adjusting Datasets
 
