@@ -107,17 +107,20 @@ Now, create two additional vectors that include the ten-day forecast for the hig
 
 ```{r DataExercise-1b}
 temp.conversation.function <- function(F){
-  c <- round(((F-32)*(5/9)),2)
+  C <- round(((F-32)*(5/9)),2)
 return(C)
 }
 highC <- temp.conversation.function(vectorhigh)
+highC
 lowC <- temp.conversation.function(vectorlow)
+lowC
 ```
 
 Combine your four vectors into a data frame and add informative column names.
 
 ```{r DataExercise-1c}
-
+data.frame <- cbind(vectorhigh, vectorlow, highC, lowC)
+colnames(data.frame) <- c("highF","lowF", "highC","lowC")
 ```
 
 Use the common functions `summary` and `sd` to obtain basic data summaries of the ten-day forecast. How would you call these functions differently for the entire data frame vs. a single column? Attempt to demonstrate both options below.
