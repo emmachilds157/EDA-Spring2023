@@ -114,7 +114,7 @@ read.csv(file.choose(),stringsAsFactors = TRUE)
 ## EXPLORE YOUR DATASET
 
 Take a moment to read through the README file associated with the USGS dataset on discharge at the Eno River. Where can you find this file? How does the placement and information found in this file relate to the best practices for reproducible data analysis?
-> ANSWER: 
+> ANSWER: I found it in the metadata folder in the larger data folder, which I liked because I know I can always go to that folder to look for README files. The organization creates consistency, which I appreciate, and contributes to best practice. Anyone else would also know to look in that folder for any README file. 
 
 ```{r Exploring data}
 View(USGS.flow.data)
