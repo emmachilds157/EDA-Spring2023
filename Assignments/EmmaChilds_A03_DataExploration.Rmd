@@ -36,7 +36,19 @@ This exercise accompanies the lessons in Environmental Data Analytics on Data Ex
 #install.packages("tidyverse")
 #install.packages("lubridate")
 #I installed packages and then commented them out so it did not run again.
-ECOTOX.Neonics <- read.csv("./",stringsAsFactors = TRUE)   
+library(readr)
+ECOTOX_Neonicotinoids_Insects_raw <- read_csv("Data/Raw/ECOTOX_Neonicotinoids_Insects_raw.csv") 
+
+Neonics <- read.csv("./Data/Raw/ECOTOX_Neonicotinoids_Insects_raw.csv",stringsAsFactors = TRUE)   
+
+library(readr)
+NEON_NIWO_Litter_massdata_2018_08_raw <- read_csv("Data/Raw/NEON_NIWO_Litter_massdata_2018-08_raw.csv")
+View(NEON_NIWO_Litter_massdata_2018_08_raw)
+
+Litter <- read.csv("./Data/Raw/NEON_NIWO_Litter_massdata_2018-08_raw.csv",stringsAsFactors = TRUE)   
+
+#Imported both datasets and then renamed as Neonics and Litter, using the 
+string as factors command.  
 ```
 
 ## Learn about your system
