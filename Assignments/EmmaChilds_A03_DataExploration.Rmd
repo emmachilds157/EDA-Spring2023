@@ -36,7 +36,7 @@ This exercise accompanies the lessons in Environmental Data Analytics on Data Ex
 #install.packages("tidyverse")
 #install.packages("lubridate")
 #I installed packages and then commented them out so it did not run again.
-
+ECOTOX.Neonics <- read.csv("./",stringsAsFactors = TRUE)   
 ```
 
 ## Learn about your system
