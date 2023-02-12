@@ -73,13 +73,17 @@ Litter <- read.csv("./Data/Raw/NEON_NIWO_Litter_massdata_2018-08_raw.csv",string
 5.  What are the dimensions of the dataset?
 
 ```{r Chunk 2: Neonics Summary Data - Dimensions}
-
+dim(Neonics)
+#4623x30 dimensions
 ```
 
 6.  Using the `summary` function on the "Effect" column, determine the most common effects that are studied. Why might these effects specifically be of interest?
 
 ```{r Chunk 3: Neonics Summary Data - Effects}
+colnames(Neonics) <- c( 
+)
 
+summary(effects())
 ```
 
 > Answer:
@@ -95,11 +99,12 @@ Litter <- read.csv("./Data/Raw/NEON_NIWO_Litter_massdata_2018-08_raw.csv",string
 
 8.  Concentrations are always a numeric value. What is the class of `Conc.1..Author.` column in the dataset, and why is it not numeric?
 
+
 ```{r}
 
 ```
 
-> Answer:
+> Answer: It is a factor class, which is not strictly numeric because the numbers correspond to a level that is comprised of characters, ie - active ingredient. So the numeric value is essentially a placeholder. 
 
 ## Explore your data graphically (Neonics)
 
