@@ -117,7 +117,7 @@ geom_freqpoly()
 
 ```{r Chunk 7: Neonics Graphical Data - Test Location}
 ggplot(Neonics, aes(Test.Location)) + 
-  geom_freqpoly()
+  geom_freqpoly() 'FINISH HELP!!!'
 ``` 
 
 Interpret this graph. What are the most common test locations, and do they differ over time?
@@ -126,13 +126,15 @@ Interpret this graph. What are the most common test locations, and do they diffe
 
 11. Create a bar graph of Endpoint counts. What are the two most common end points, and how are they defined? Consult the ECOTOX_CodeAppendix for more information. 
 
-[**TIP**: Add `theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))` to the end of your plot command to rotate and align the X-axis labels...]
+[**TIP**:`theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))` Add  to the end of your plot command to rotate and align the X-axis labels...]
 
 ```{r Chunk 8: Neonics Graphical Data - Endpoints}
-
+ggplot(Neonics, aes(x = Endpoint)) +
+  geom_bar() +
+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
 
-> Answer:
+> Answer: The two most common endpoints are LC50 and LOEL. LC50 stands for lethal concentration to xx% of test animals, for this endpoint it is 50%. LOEL stands for lowest-observable-effect-level, which was the "lowest dose producing effects that were significantly different (as reported by authors) from responses of controls" according to the Appendix. 
 
 ## Explore your data (Litter)
 
