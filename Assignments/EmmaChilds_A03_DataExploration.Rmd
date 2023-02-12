@@ -7,6 +7,9 @@ geometry: margin=2.54cm
 editor_options: 
   chunk_output_type: console
 ---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(tidy.opts = list(width.cutoff=45), tidy=TRUE)
+```
 
 ## OVERVIEW
 
@@ -170,7 +173,7 @@ ggplot(Litter) +
 
 15. Using `geom_boxplot` and `geom_violin`, create a boxplot and a violin plot of dryMass by functionalGroup.
 
-```{r}
+```{r Chunk 12: Explore Litter Data - box and violin plots}
 ggplot(Litter) + 
   geom_boxplot(aes(x = dryMass, y = functionalGroup))
 
