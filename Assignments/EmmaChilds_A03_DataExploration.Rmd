@@ -80,22 +80,20 @@ dim(Neonics)
 6.  Using the `summary` function on the "Effect" column, determine the most common effects that are studied. Why might these effects specifically be of interest?
 
 ```{r Chunk 3: Neonics Summary Data - Effects}
-colnames(Neonics) <- c( 
-)
 
-summary(effects())
+summary(Neonics$Effect)
 ```
 
-> Answer:
+> Answer:Population and Mortality are by far the two most commonly studied effects. This makes sense because they would provide measurable insight into how the neonicotinoid is impacting the insects. If their population is decreasing or their mortality rates are affected, that could point to some degree of connection with the insecticide use. Are they alive? Are their numbers going up or down? Clear questions that can be studied. 
 
 
 7.  Using the `summary` function, determine the six most commonly studied species in the dataset (common name). What do these species have in common, and why might they be of interest over other insects? Feel free to do a brief internet search for more information if needed.[TIP: The `sort()` command can sort the output of the summary command...]
 
-```{r}
-
+```{r Chunk 4: Neonics Summary Data - Commonly Studied}
+sort(summary(Neonics$Species.Common.Name))
 ```
 
-> Answer:
+> Answer:The six most commonly studied species are the Italian honeybee, Bumble Bee, Carniolan Honey Bee, Buff Tailed Bumblebee, Parasitic Wasp, and Honey Bee (with "other" adding up to 670). All of these bees are very important pollinator species for agricultural crops, and plants of many kinds (flowers, trees, etc.) The parasitic wasps are also really good pollinators and are often released on farms to serve as natural biocontrol of insect pest populations. 
 
 8.  Concentrations are always a numeric value. What is the class of `Conc.1..Author.` column in the dataset, and why is it not numeric?
 
