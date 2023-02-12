@@ -141,7 +141,7 @@ theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 12. Determine the class of collectDate. Is it a date? If not, change to a date and confirm the new class of the variable. Using the `unique` function, determine which dates litter was sampled in August 2018.
 
-```{r Chunk 9: Neonics Graphical Data - collectDate}
+```{r Chunk 9: Explore Litter Data - collectDate}
 class(Litter$collectDate)
 
 str_today <- Litter$collectDate
@@ -154,15 +154,17 @@ unique(Litter$collectDate)
 
 13. Using the `unique` function, determine how many plots were sampled at Niwot Ridge. How is the information obtained from `unique` different from that obtained from `summary`?
 
-```{r}
+```{r Chunk 10: Explore Litter Data - plot ID}
 unique(Litter$plotID)
 ```
 
-> Answer:
+> Answer: 12 plots were sampled at Niwot Ridge. The unique function deletes/removes any duplicate data and does not include it in the output at all, whereas the summary would still include duplicate data. 
 
 14. Create a bar graph of functionalGroup counts. This shows you what type of litter is collected at the Niwot Ridge sites. Notice that litter types are fairly equally distributed across the Niwot Ridge sites.
 
-```{r}
+```{r Chunk 11: Explore Litter Data - functionalGroup}
+ggplot(Litter) + 
+  geom_bar(aes(x = functionalGroup)) 
 
 ```
 
