@@ -58,12 +58,12 @@ Litter <- read.csv("./Data/Raw/NEON_NIWO_Litter_massdata_2018-08_raw.csv",string
 
 3.  The Niwot Ridge litter and woody debris dataset was collected from the National Ecological Observatory Network, which collectively includes 81 aquatic and terrestrial sites across 20 ecoclimatic domains. 32 of these sites sample forest litter and woody debris, and we will focus on the Niwot Ridge long-term ecological research (LTER) station in Colorado. Why might we be interested in studying litter and woody debris that falls to the ground in forests? Feel free to do a brief internet search if you feel you need more background information.
 
-> Answer: Studying leaf litter and woody debris would yield data into how the neonicotinoids might bioaccumulate in plant matter, which would have implications for forest insects. If different species are either living in the trees, the forest floor, or underground then their life cycles could be affected by these potentially lingering insecticides. 
+> Answer: Studying leaf litter and woody debris would yield data into how the neonicotinoids might bioaccumulate in plant matter, which would have implications for forest insects who eat or live in the plant matter. If different species are either living in the trees, the forest floor, or underground then their life cycles could be affected by these potentially lingering insecticides.
 
 4.  How is litter and woody debris sampled as part of the NEON network? Read the NEON_Litterfall_UserGuide.pdf document to learn more. List three pieces of salient information about the sampling methods here:
 
 > Answer: 
- 1. For this data collection, the scientists designated litter as material that is dropped from the forest canopy and had a butt end diameter <2cm and a length <50 cm. The material was s collected in elevated 0.5m2 PVC traps. Fine wood debris was defined as material that dropped from the forest canopy and had a butt end diameter <2cm and a length >50 cm. This material was collected in ground traps as longer material was not reliably collected by the elevated traps. 
+ 1. For this data collection, the scientists designated litter as material that is dropped from the forest canopy and had a diameter <2cm and a length <50 cm. The material was collected in elevated 0.5m2 PVC traps. Fine wood debris was defined as material that dropped from the forest canopy and had a diameter <2cm and a length >50 cm. This material was collected in ground traps as longer material was not reliably collected by the elevated traps. 
  2. According to the user guide, trap placement within plots were either targeted or randomized, depending on the vegetation. I found this interesting because it is not typical spatial sampling, but I imagine it would allow for greater examination of any particular areas that scientists thought might be especially impacted by neonicotinoids, or particular species of concern. In reading further, I see that the targeted plots are chosen based on lower percent vegetation cover, which makes sense. 
  3. Time of year is incredible important for this sampling design, as both deciduous and evergreen areas are being evaluated. At sites with deciduous vegetation or limited access during winter months, the guide says litter sampling of elevated traps may be discontinued for up to 6 months during the dormant season. 
 
@@ -98,8 +98,8 @@ sort(summary(Neonics$Species.Common.Name))
 8.  Concentrations are always a numeric value. What is the class of `Conc.1..Author.` column in the dataset, and why is it not numeric?
 
 
-```{r}
-
+```{r Chunk 5: Neonics Summary Data - Class Type}
+class(Neonics$Conc.1..Author.)
 ```
 
 > Answer: It is a factor class, which is not strictly numeric because the numbers correspond to a level that is comprised of characters, ie - active ingredient. So the numeric value is essentially a placeholder. 
@@ -108,14 +108,16 @@ sort(summary(Neonics$Species.Common.Name))
 
 9.  Using `geom_freqpoly`, generate a plot of the number of studies conducted by publication year.
 
-```{r}
-
+```{r Chunk 6: Neonics Graphical Data - # of Studies}
+ggplot(Neonics, aes(Publication.Year)) +
+geom_freqpoly()
 ```
 
 10. Reproduce the same graph but now add a color aesthetic so that different Test.Location are displayed as different colors.
 
-```{r}
-
+```{r Chunk 7: Neonics Graphical Data - Test Location}
+ggplot(Neonics, aes(Test.Location), color = class) +
+geom_freqpoly()
 ```
 
 Interpret this graph. What are the most common test locations, and do they differ over time?
