@@ -102,7 +102,7 @@ sort(summary(Neonics$Species.Common.Name))
 class(Neonics$Conc.1..Author.)
 ```
 
-> Answer: It is a factor class, which is not strictly numeric because the numbers correspond to a level that is comprised of characters, ie - active ingredient. So the numeric value is essentially a placeholder. 
+> Answer: It is a factor class, which is because we told R to read strings as factors, and so it is reading this whole column as a string, and thus, factors (in quotations).
 
 ## Explore your data graphically (Neonics)
 
@@ -116,8 +116,8 @@ geom_freqpoly()
 10. Reproduce the same graph but now add a color aesthetic so that different Test.Location are displayed as different colors.
 
 ```{r Chunk 7: Neonics Graphical Data - Test Location}
-ggplot(Neonics, aes(Test.Location), color = class) +
-geom_freqpoly() HELP
+ggplot(Neonics, aes(Test.Location)) + 
+  geom_freqpoly()
 ``` 
 
 Interpret this graph. What are the most common test locations, and do they differ over time?
@@ -128,7 +128,7 @@ Interpret this graph. What are the most common test locations, and do they diffe
 
 [**TIP**: Add `theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))` to the end of your plot command to rotate and align the X-axis labels...]
 
-```{r}
+```{r Chunk 8: Neonics Graphical Data - Endpoints}
 
 ```
 
