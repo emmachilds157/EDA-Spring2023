@@ -117,8 +117,8 @@ geom_freqpoly()
 
 ```{r Chunk 7: Neonics Graphical Data - Test Location}
 ggplot(Neonics, aes(Test.Location), color = class) +
-geom_freqpoly()
-```
+geom_freqpoly() HELP
+``` 
 
 Interpret this graph. What are the most common test locations, and do they differ over time?
 
