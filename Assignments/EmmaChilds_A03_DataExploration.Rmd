@@ -32,7 +32,7 @@ This exercise accompanies the lessons in Environmental Data Analytics on Data Ex
 
 1.  Check your working directory, load necessary packages (tidyverse, lubridate), and upload two datasets: the ECOTOX neonicotinoid dataset (ECOTOX_Neonicotinoids_Insects_raw.csv) and the Niwot Ridge NEON dataset for litter and woody debris (NEON_NIWO_Litter_massdata_2018-08_raw.csv). Name these datasets "Neonics" and "Litter", respectively. Be sure to include the subcommand to read strings in as factors.
 
-```{r 1: Installing and importing data, message=FALSE}
+```{r Chunk 1: Installing and importing data, message=FALSE}
 #install.packages("tidyverse")
 #install.packages("lubridate")
 #I installed packages and then commented them out so it did not run again.
@@ -63,21 +63,22 @@ Litter <- read.csv("./Data/Raw/NEON_NIWO_Litter_massdata_2018-08_raw.csv",string
 4.  How is litter and woody debris sampled as part of the NEON network? Read the NEON_Litterfall_UserGuide.pdf document to learn more. List three pieces of salient information about the sampling methods here:
 
 > Answer: 
- 1. According to the user guide, trap placement within plots may be either targeted or randomized, depending on the vegetation. I found this interest because it is not typical spatial sampling, but I imagine it would allow for greater examination of any particular areas that scientists thought might be especially impacted by neonicotinoids, or particular species of concern. In reading further, I see that the targeted plots are chosen based on lower percent vegetation cover, which makes sense. 
- 2. Time of year is incredible important for this sampling design, as both deciduous and evergreen areas are being evaluated. At sites with deciduous vegetation or limited access during winter months, the guide says litter sampling of elevated traps may be discontinued for up to 6 months during the dormant season. 
- 3. 
+ 1. For this data collection, the scientists designated litter as material that is dropped from the forest canopy and had a butt end diameter <2cm and a length <50 cm. The material was s collected in elevated 0.5m2 PVC traps. Fine wood debris was defined as material that dropped from the forest canopy and had a butt end diameter <2cm and a length >50 cm. This material was collected in ground traps as longer material was not reliably collected by the elevated traps. 
+ 2. According to the user guide, trap placement within plots were either targeted or randomized, depending on the vegetation. I found this interesting because it is not typical spatial sampling, but I imagine it would allow for greater examination of any particular areas that scientists thought might be especially impacted by neonicotinoids, or particular species of concern. In reading further, I see that the targeted plots are chosen based on lower percent vegetation cover, which makes sense. 
+ 3. Time of year is incredible important for this sampling design, as both deciduous and evergreen areas are being evaluated. At sites with deciduous vegetation or limited access during winter months, the guide says litter sampling of elevated traps may be discontinued for up to 6 months during the dormant season. 
+
 
 ## Obtain basic summaries of your data (Neonics)
 
 5.  What are the dimensions of the dataset?
 
-```{r}
+```{r Chunk 2: Neonics Summary Data - Dimensions}
 
 ```
 
 6.  Using the `summary` function on the "Effect" column, determine the most common effects that are studied. Why might these effects specifically be of interest?
 
-```{r}
+```{r Chunk 3: Neonics Summary Data - Effects}
 
 ```
 
