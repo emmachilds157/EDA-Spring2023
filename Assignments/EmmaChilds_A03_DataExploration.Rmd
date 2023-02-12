@@ -116,13 +116,14 @@ geom_freqpoly()
 10. Reproduce the same graph but now add a color aesthetic so that different Test.Location are displayed as different colors.
 
 ```{r Chunk 7: Neonics Graphical Data - Test Location}
-ggplot(Neonics, aes(Test.Location)) + 
-  geom_freqpoly() 'FINISH HELP!!!'
+ggplot(Neonics) + 
+  geom_freqpoly(aes(x = Publication.Year, color = Test.Location), bins = 30) +
+theme(legend.position = "top")
 ``` 
 
 Interpret this graph. What are the most common test locations, and do they differ over time?
 
-> Answer:
+> Answer: The two most common test locations are the field natural and the lab. For many years, they were close to each other in how many samples were conducted in each, but around 2010, there was a dramatic increase in the number of samples done in the lab compared to ones done in the field. I wonder if this could be due to data that suggested neonics had negative impacts on the ecosystem, and thus testing them in the field became a non-viable option. 
 
 11. Create a bar graph of Endpoint counts. What are the two most common end points, and how are they defined? Consult the ECOTOX_CodeAppendix for more information. 
 
@@ -140,14 +141,21 @@ theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 
 12. Determine the class of collectDate. Is it a date? If not, change to a date and confirm the new class of the variable. Using the `unique` function, determine which dates litter was sampled in August 2018.
 
-```{r}
+```{r Chunk 9: Neonics Graphical Data - collectDate}
+class(Litter$collectDate)
 
+str_today <- Litter$collectDate
+date_obj_today <- ymd(Litter$collectDate)
+date_obj_today
+class(date_obj_today)
+
+unique(Litter$collectDate)
 ```
 
 13. Using the `unique` function, determine how many plots were sampled at Niwot Ridge. How is the information obtained from `unique` different from that obtained from `summary`?
 
 ```{r}
-
+unique(Litter$plotID)
 ```
 
 > Answer:
