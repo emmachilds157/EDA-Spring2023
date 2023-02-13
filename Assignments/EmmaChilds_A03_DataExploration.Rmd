@@ -8,7 +8,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-This exercise accompanies the lessons in Environmental Data Analytics on Data Exploration.
+#This exercise accompanies the lessons in Environmental Data Analytics on Data Exploration.
 
 ## Directions
 
