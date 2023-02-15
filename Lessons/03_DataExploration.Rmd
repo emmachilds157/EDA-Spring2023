@@ -75,7 +75,11 @@ library(tidyverse)
 
 Question: What happens in the console when you load a package?
 
+<<<<<<< HEAD
 > Answer: It shows the loaded package, and any conflicts. 
+=======
+> Answer: 
+>>>>>>> 1dffb1c (Add M3 (Data Exploration) lesson files)
 
 ### Import your datasets
 
@@ -103,7 +107,11 @@ USGS.flow.data <- read.csv("./Data/Raw/USGS_Site02085000_Flow_Raw.csv",stringsAs
 #read.csv("./Data/Raw/USGS_Site02085000_Flow_Raw.csv",stringsAsFactors = TRUE)
 
 # Another option is to choose with your browser
+<<<<<<< HEAD
 read.csv(file.choose(),stringsAsFactors = TRUE)
+=======
+# read.csv(file.choose(),stringsAsFactors = TRUE)
+>>>>>>> 1dffb1c (Add M3 (Data Exploration) lesson files)
 
 # To import .txt files, use read.table rather than read.csv
 #read.table()
@@ -114,7 +122,11 @@ read.csv(file.choose(),stringsAsFactors = TRUE)
 ## EXPLORE YOUR DATASET
 
 Take a moment to read through the README file associated with the USGS dataset on discharge at the Eno River. Where can you find this file? How does the placement and information found in this file relate to the best practices for reproducible data analysis?
+<<<<<<< HEAD
 > ANSWER: I found it in the metadata folder in the larger data folder, which I liked because I know I can always go to that folder to look for README files. The organization creates consistency, which I appreciate, and contributes to best practice. Anyone else would also know to look in that folder for any README file. 
+=======
+> ANSWER: 
+>>>>>>> 1dffb1c (Add M3 (Data Exploration) lesson files)
 
 ```{r Exploring data}
 View(USGS.flow.data)
@@ -149,7 +161,11 @@ summary(USGS.flow.data)  #could point to column only with $
 ```
 
 What happened to blank cells in the spreadsheet when they were imported into R?
+<<<<<<< HEAD
 > Answer: They are imported as NAs. 
+=======
+> Answer: 
+>>>>>>> 1dffb1c (Add M3 (Data Exploration) lesson files)
 
 ## Adjusting Datasets
 
@@ -163,7 +179,11 @@ summary(USGS.flow.data$gage.height.mean)
 ```
 Question: What types of research questions might make it favorable to remove NAs from a dataset, and what types of research questions might make it favorable to retain NAs in the dataset?
 
+<<<<<<< HEAD
 > Answer: We never remove NAs for a time series analysis, but we might omit the NAs for....
+=======
+> Answer: 
+>>>>>>> 1dffb1c (Add M3 (Data Exploration) lesson files)
 
 ```{r Removing NAs}
 USGS.flow.data.complete <- na.omit(USGS.flow.data)
