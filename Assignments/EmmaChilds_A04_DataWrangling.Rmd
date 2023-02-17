@@ -41,12 +41,32 @@ The completed exercise is due on Friday, Feb 20th @ 5:00pm.
 
 ```{r, message = FALSE}
 #1a 
+install.packages("tidyverse")
+install.packages("lubridate")
+install.packages("here")
+
+library(tidyverse)
+library(lubridate)
+library(here)
+#installing and loading packages 
 
 #1b 
+getwd()
+#Retrieved working directory and confirmed that it was set to the base level EDA Spring 2023 folder. 
 
 #1c 
+EPAair.O3.NC2018 <- read.csv(file=here("./Data/Raw/EPAair_O3_NC2018_raw.csv"), stringsAsFactors = TRUE)
+EPAair.O3.NC2019 <- read.csv(file=here("./Data/Raw/EPAair_O3_NC2019_raw.csv"), stringsAsFactors = TRUE)
+EPAair.PM25.NC2018 <- read.csv(file=here("./Data/Raw/EPAair_PM25_NC2018_raw.csv"), stringsAsFactors = TRUE)
+EPAair.PM25.NC2019 <- read.csv(file=here("./Data/Raw/EPAair_PM25_NC2019_raw.csv"), stringsAsFactors = TRUE)
+#reading in files
 
 #2 
+glimpse(EPAair.O3.NC2018)
+glimpse(EPAair.O3.NC2019)
+glimpse(EPAair.PM25.NC2018)
+glimpse(EPAair.PM25.NC2019)
+#glimpse function to get dimensions, column names and structure for each dataset we are analyzing.
 
 ```
 
@@ -63,6 +83,14 @@ The completed exercise is due on Friday, Feb 20th @ 5:00pm.
 
 ```{r}
 #3
+EPAair.O3.NC2018$Date <- ymd(EPAair.O3.NC2018$Date)
+EPAair.O3.NC2019$Date <- ymd(EPAair.O3.NC2019$Date)
+
+EPAair.PM25.NC2018$Date <- ymd(EPAair.PM25.NC2018$Date)
+
+EPAair.PM25.NC2019$Date <- ymd(EPAair.PM25.NC2019$Date)
+#changing date columns to be date objects for all four datasets, using the 'lubridate' ymd function. 
+
 
 #4
 
