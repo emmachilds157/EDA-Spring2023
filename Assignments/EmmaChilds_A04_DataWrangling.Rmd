@@ -83,8 +83,9 @@ glimpse(EPAair.PM25.NC2019)
 
 ```{r}
 #3
-EPAair.O3.NC2018$Date <- ymd(EPAair.O3.NC2018$Date)
-EPAair.O3.NC2019$Date <- ymd(EPAair.O3.NC2019$Date)
+EPAair.O3.NC2018$Date <- as.Date(EPAair.O3.NC2018$Date, format = "%m/%d/%Y")
+EPAair.O3.NC2019$Date <- as.Date(EPAair.O3.NC2019$Date, format = "%m/%d/%Y")
+FINISH
 EPAair.PM25.NC2018$Date <- ymd(EPAair.PM25.NC2018$Date)
 EPAair.PM25.NC2019$Date <- ymd(EPAair.PM25.NC2019$Date)
 #changing date columns to be date objects for all four datasets, using the 'lubridate' ymd function. 
@@ -130,6 +131,12 @@ write.csv(EPAair.PM25.NC2019_subset, row.names = FALSE, file =  "./Data/Processe
 
 ```{r}
 #7 
+EPAair.2018 <- read.csv("./Data/Processed/EPAair.O3.NC2018_Processed.csv")
+EPAair.2019 <- read.csv("./Data/Processed/EPAair.O3.NC2019_Processed.csv")
+EPAair.PM25.2018 <- read.csv("./Data/Processed/EPAair.PM25.NC2018_Processed.csv")
+EPAair.PM25.2019 <- read.csv("./Data/Processed/EPAair.PM25.NC2019_Processed.csv")
+
+EPAair.1819 <- rbind(EPAair.2018, EPAair.2019, EPAair.PM25.2018, EPAair.PM25.NC2019)
 
 #8 
 
