@@ -85,16 +85,18 @@ glimpse(EPAair.PM25.NC2019)
 #3
 EPAair.O3.NC2018$Date <- ymd(EPAair.O3.NC2018$Date)
 EPAair.O3.NC2019$Date <- ymd(EPAair.O3.NC2019$Date)
-
 EPAair.PM25.NC2018$Date <- ymd(EPAair.PM25.NC2018$Date)
-
 EPAair.PM25.NC2019$Date <- ymd(EPAair.PM25.NC2019$Date)
 #changing date columns to be date objects for all four datasets, using the 'lubridate' ymd function. 
 
-
 #4
+EPAair.O3.NC2018_subset <- select(EPAair.O3.NC2018, Date, DAILY_AQI_VALUE, Site.Name, AQS_PARAMETER_DESC, COUNTY, SITE_LATITUDE, SITE_LONGITUDE)
+EPAair.O3.NC2019_subset <- select(EPAair.O3.NC2019, Date, DAILY_AQI_VALUE, Site.Name, AQS_PARAMETER_DESC, COUNTY, SITE_LATITUDE, SITE_LONGITUDE)
+EPAair.PM25.NC2018_subset <- select(EPAair.PM25.NC2018, Date, DAILY_AQI_VALUE, Site.Name, AQS_PARAMETER_DESC, COUNTY, SITE_LATITUDE, SITE_LONGITUDE)
+EPAair.PM25.NC2019_subset <- select(EPAair.PM25.NC2019, Date, DAILY_AQI_VALUE, Site.Name, AQS_PARAMETER_DESC, COUNTY, SITE_LATITUDE, SITE_LONGITUDE)
 
 #5
+
 
 #6
 
