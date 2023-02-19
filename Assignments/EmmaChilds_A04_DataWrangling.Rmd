@@ -96,9 +96,14 @@ EPAair.PM25.NC2018_subset <- select(EPAair.PM25.NC2018, Date, DAILY_AQI_VALUE, S
 EPAair.PM25.NC2019_subset <- select(EPAair.PM25.NC2019, Date, DAILY_AQI_VALUE, Site.Name, AQS_PARAMETER_DESC, COUNTY, SITE_LATITUDE, SITE_LONGITUDE)
 
 #5
-
+EPAair.PM25.NC2018_subset$AQS_PARAMETER_DESC <- "PM2.5"
+EPAair.PM25.NC2019_subset$AQS_PARAMETER_DESC <- "PM2.5"
 
 #6
+write.csv(EPAair.O3.NC2018_subset, row.names = FALSE, file = "./Data/Processed/EPAair.O3.NC2018_Processed.csv")
+write.csv(EPAair.O3.NC2019_subset, row.names = FALSE, file = "./Data/Processed/EPAair.O3.NC2019_Processed.csv")
+write.csv(EPAair.PM25.NC2018_subset, row.names = FALSE, file =  "./Data/Processed/EPAair.PM25.NC2018_Processed.csv")
+write.csv(EPAair.PM25.NC2019_subset, row.names = FALSE, file =  "./Data/Processed/EPAair.PM25.NC2019_Processed.csv")
 
 ```
 
