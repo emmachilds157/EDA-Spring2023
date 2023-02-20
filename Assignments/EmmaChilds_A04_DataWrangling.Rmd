@@ -95,17 +95,19 @@ EPAair.O3.NC2018_subset <- select(EPAair.O3.NC2018, Date, DAILY_AQI_VALUE, Site.
 EPAair.O3.NC2019_subset <- select(EPAair.O3.NC2019, Date, DAILY_AQI_VALUE, Site.Name, AQS_PARAMETER_DESC, COUNTY, SITE_LATITUDE, SITE_LONGITUDE)
 EPAair.PM25.NC2018_subset <- select(EPAair.PM25.NC2018, Date, DAILY_AQI_VALUE, Site.Name, AQS_PARAMETER_DESC, COUNTY, SITE_LATITUDE, SITE_LONGITUDE)
 EPAair.PM25.NC2019_subset <- select(EPAair.PM25.NC2019, Date, DAILY_AQI_VALUE, Site.Name, AQS_PARAMETER_DESC, COUNTY, SITE_LATITUDE, SITE_LONGITUDE)
+#selected for specific columns for all four datasets 
 
 #5
 EPAair.PM25.NC2018_subset$AQS_PARAMETER_DESC <- "PM2.5"
 EPAair.PM25.NC2019_subset$AQS_PARAMETER_DESC <- "PM2.5"
+#filled in the AQS parameter column with the value of PM2.5 for every cell
 
 #6
 write.csv(EPAair.O3.NC2018_subset, row.names = FALSE, file = "./Data/Processed/EPAair.O3.NC2018_Processed.csv")
 write.csv(EPAair.O3.NC2019_subset, row.names = FALSE, file = "./Data/Processed/EPAair.O3.NC2019_Processed.csv")
 write.csv(EPAair.PM25.NC2018_subset, row.names = FALSE, file =  "./Data/Processed/EPAair.PM25.NC2018_Processed.csv")
 write.csv(EPAair.PM25.NC2019_subset, row.names = FALSE, file =  "./Data/Processed/EPAair.PM25.NC2019_Processed.csv")
-
+#saved the subset data as processed files 
 ```
 
 
@@ -137,14 +139,17 @@ EPAair.PM25.2018 <- read.csv("./Data/Processed/EPAair.PM25.NC2018_Processed.csv"
 EPAair.PM25.2019 <- read.csv("./Data/Processed/EPAair.PM25.NC2019_Processed.csv")
 
 EPAair.18.19 <- rbind(EPAair.O3.NC2018_subset, EPAair.O3.NC2019_subset, EPAair.PM25.NC2018_subset, EPAair.PM25.NC2019_subset)
+#combined the four processed datasets into one dataframe with rbind.
 
 #8 
-EPAair.18.19.common <- filter(EPAair.18.19, Site.Name != "Linville Falls" & 
-        Site.Name != "Durham Armory" & Site.Name != "Leggett" &
-        Site.Name != "Hattie Avenue" & Site.Name != "Clemmons Middle" &
-        Site.Name != "Mendenhall School" & Site.Name != "Frying Pan Mountain" &         Site.Name != "West Johnston Co." & Site.Name != "Garinger High School"         & Site.Name != "Castle Hayne" & Site.Name != "Pitt Agri. Center" &
-        Site.Name != "Bryson City" & Site.Name != "Millbrook School") 
-
+EPAair.18.19.common <- 
+  EPAair.18.19 %>%
+  filter(Site.Name == "Linville Falls", 
+        Site.Name == "Durham Armory" , Site.Name == "Leggett" ,
+        Site.Name == "Hattie Avenue" , Site.Name == "Clemmons Middle" ,
+        Site.Name == "Mendenhall School" , Site.Name == "Frying Pan Mountain" ,         Site.Name == "West Johnston Co." , Site.Name == "Garinger High School"         , Site.Name == "Castle Hayne" , Site.Name == "Pitt Agri. Center" ,
+        Site.Name == "Bryson City" , Site.Name == "Millbrook School") 
+#started working on multiple filters and got totally stuck. I'm turning this in incomplete sadly because it is late in the evening, my brain is flummoxed, and I'm going to seek TA help. Thanks! 
 
 #9
 
@@ -173,4 +178,4 @@ EPAair.18.19.common <- filter(EPAair.18.19, Site.Name != "Linville Falls" &
 
 14. Why did we use the function `drop_na` rather than `na.omit`?
 
-> Answer: 
+> Answer: We use the 'drop_na' function because it allows us to point to the exact column inside a pipe whereas 'na.omit' is more general and does not allow us to do that and can take values out of multiple columns or rows, which gets confusing. 
