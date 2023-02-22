@@ -19,10 +19,14 @@ Effective data visualization depends on purposeful choices about graph types. Th
 ## Set Up
 
 ```{r, message = FALSE, warning = FALSE}
-library(tidyverse);library(lubridate);library(here)
+get(wd)
+library(tidyverse);
+library(lubridate);
+library(here)
+#install.package("ggridges")
 library(ggridges)
 
-here()
+
 
 PeterPaul.chem.nutrients <- 
   read.csv(here("Data/Processed_KEY/NTL-LTER_Lake_Chemistry_Nutrients_PeterPaul_Processed.csv"), stringsAsFactors = TRUE)
@@ -87,11 +91,12 @@ print(O3plot)
 
 # Fix this code
 O3plot2 <- ggplot(EPAair) +
-  geom_point(aes(x = Date, y = Ozone, color = "blue"))
+  #geom_point(aes(x = Date, y = Ozone, color = "blue")) incorrect code
+  geom_point(aes(x = Date, y = Ozone), color = "blue")
 print(O3plot2)
 
 # Add additional variables
-# How could you automatically assign a marker color to a variable? 
+# How could you automatically assign a marker color to a variable? ggplot will automatically do it. 
 PMplot <- 
   ggplot(EPAair, aes(x = Month, y = PM2.5, shape = as.factor(Year), color = Site.Name)) +
   geom_point()
