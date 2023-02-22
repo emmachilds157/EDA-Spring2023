@@ -93,14 +93,30 @@ Say we want to plot the number of records each month in the Peter/Paul lakes dat
 
 ```{r Plot the number of records by month}
 #What kind of values are months?
+class(PeterPaul.chem.nutrients$month)
 
 #List unique values
+unique(PeterPaul.chem.nutrients$month)
+#noticing no values for Jan, March, April or December
 
 #Plot how many Lake observations occur each month
+ggplot(PeterPaul.chem.nutrients, aes(x=month)) + 
+  geom_bar()
+#need months to be factors so that we have more control over the x-axis
 
 #Convert month to a factor -- with 12 levels, labelled with month names
+factor(PeterPaul.chem.nutrients$month,
+       levels=1:12,
+       labels=month.abb)
 
 #Try again: Plot how many Lake observations occur each month
+ggplot(PeterPaul.chem.nutrients, aes(x=factor(month,level=1:12,labels = month.abb))) + 
+  geom_bar() +
+  scale_x_discrete(drop=FALSE) +
+  labs(
+    title("") #FINISH THIS SECTION!!!
+    x="month")
+#have to figure out how to override automatic settings so that we can display all 12 levels in the bar plot. x is the axis, so we have to do scale_x_discrete, then drop=FALSE keeps it from dropping the levels that aren't represented. This then depicts all 12 months - a visualization that communicates much more effectively than before. 
 
 #Alter to include missing months
 
@@ -225,7 +241,23 @@ Exercise: build your own scatterplots of PeterPaul.chem.nutrients
 ```{r, fig.height = 3, fig.width = 4, warning = FALSE}
 
 # 1. 
-# Plot surface temperatures by day of  year. 
+# Plot surface temperatures by day of year. 
+PeterPaul.chem.nutrients %>% 
+  filter(depth == 0) %>% 
+  ggplot(aes(
+      x=daynum,
+      y=temperature_C,
+      color=year4)
+    ) + 
+  geom_point(size=0.5,alpha=0.5) +
+     facet_wrap(vars(lakename)) +
+  labs(
+    title = "Surface Temperature vs. Day of Year"
+    
+  )
+
+surface_temp_dayofyear_plot
+
 # Color your points by year, and facet by lake in two rows.
 # Change the ylab name
 
