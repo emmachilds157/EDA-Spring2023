@@ -1,6 +1,6 @@
 ---
 title: "Assignment 5: Data Visualization"
-author: "Student Name"
+author: "Emma Childs"
 date: "Spring 2023"
 output: pdf_document
 geometry: margin=2.54cm
@@ -32,9 +32,33 @@ This exercise accompanies the lessons in Environmental Data Analytics on Data Vi
 
 ```{r initialize project}
 #1 
+getwd()
+
+install.packages("tidyverse")
+install.packages("lubridate")
+install.packages("here")
+install.packages("cowplot")
+
+library(tidyverse)
+library(lubridate)
+library(here)
+library(cowplot)
+#installing and loading packages 
+
+NTL.Chem.Nutrients.PeterPaul <- read.csv(file=here("./Data/Processed_KEY/NTL-LTER_Lake_Chemistry_Nutrients_PeterPaul_Processed.csv"), stringsAsFactors = TRUE)
+NEON.litter <- read.csv(file=here("./Data/Processed_KEY/NEON_NIWO_Litter_mass_trap_Processed.csv"), stringsAsFactors = TRUE)
+#reading in files
 
 #2 
+str_today_NEON <- NEON.litter$collectDate
+date_obj_today_NEON <- ymd(NEON.litter$collectDate)
+date_obj_today_NEON
+class(date_obj_today_NEON)
 
+str_today_NTL <- NTL.Chem.Nutrients.PeterPaul$sampledate
+date_obj_today_NLT <- ymd(NTL.Chem.Nutrients.PeterPaul$sampledate)
+date_obj_today_NLT
+class(date_obj_today_NLT)
 ```
 ## Define your theme
 3. Build a theme and set it as your default theme. Customize the look of at least two of the following: 
