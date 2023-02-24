@@ -83,11 +83,11 @@ glimpse(EPAair.PM25.NC2019)
 
 ```{r}
 #3
-EPAair.O3.NC2018$Date <- as.Date(EPAair.O3.NC2018$Date, format = "%m/%d/%Y")
-EPAair.O3.NC2019$Date <- as.Date(EPAair.O3.NC2019$Date, format = "%m/%d/%Y")
+EPAair.O3.NC2018$Date <- mdy(EPAair.O3.NC2018$Date)
+EPAair.O3.NC2019$Date <- mdy(EPAair.O3.NC2019$Date)
 
-EPAair.PM25.NC2018$Date <- as.Date(EPAair.PM25.NC2018$Date, format = "%m/%d/%Y")
-EPAair.PM25.NC2019$Date <- as.Date(EPAair.PM25.NC2019$Date, format = "%m/%d/%Y")
+EPAair.PM25.NC2018$Date <- mdy(EPAair.PM25.NC2018$Date)
+EPAair.PM25.NC2019$Date <- mdy(EPAair.PM25.NC2019$Date)
 #changing date columns to be date objects for all four datasets
 
 #4
@@ -144,12 +144,18 @@ EPAair.18.19 <- rbind(EPAair.O3.NC2018_subset, EPAair.O3.NC2019_subset, EPAair.P
 #8 
 EPAair.18.19.common <- 
   EPAair.18.19 %>%
-  filter(Site.Name == "Linville Falls", 
-        Site.Name == "Durham Armory" , Site.Name == "Leggett" ,
-        Site.Name == "Hattie Avenue" , Site.Name == "Clemmons Middle" ,
-        Site.Name == "Mendenhall School" , Site.Name == "Frying Pan Mountain" ,         Site.Name == "West Johnston Co." , Site.Name == "Garinger High School"         , Site.Name == "Castle Hayne" , Site.Name == "Pitt Agri. Center" ,
-        Site.Name == "Bryson City" , Site.Name == "Millbrook School") 
-#started working on multiple filters and got totally stuck. I'm turning this in incomplete sadly because it is late in the evening, my brain is flummoxed, and I'm going to seek TA help. Thanks! 
+  filter(Site.Name == "Linville Falls" |
+        Site.Name == "Durham Armory" | Site.Name == "Leggett" |
+        Site.Name == "Hattie Avenue" | Site.Name == "Clemmons Middle" |
+        Site.Name == "Mendenhall School" | Site.Name == "Frying Pan Mountain" |         Site.Name == "West Johnston Co." | Site.Name == "Garinger High School" |         Site.Name == "Castle Hayne" | Site.Name == "Pitt Agri. Center" |
+        Site.Name == "Bryson City" | Site.Name == "Millbrook School") %>%
+  group_by(Date, Site.Name, AQS_PARAMETER_DESC, COUNTY) %>%
+  summarise(meanAQI=mean(DAILY_AQI_VALUE), 
+            meanlat=mean(SITE_LATITUDE), 
+            meanlong=mean(SITE_LONGITUDE)) %>%
+mutate(month_specific=month(Date), year_specific=year(Date))
+
+
 
 #9
 
