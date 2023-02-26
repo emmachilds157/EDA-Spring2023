@@ -177,6 +177,22 @@ box_TN <- NTL.Chem.Nutrients.PeterPaul %>%
     ) 
 
 print(box_TN)
+
+#Part d/cowplot.
+#install.packages("cowplot") - already done
+library(cowplot)
+
+p1 <- ggplot(box_temps, aes(x=month, y=temperature_C)) + 
+  geom_point()
+p2 <- ggplot(box_TP, aes(x=month, y=tp_ug)) +
+  geom_point()
+p3 <- ggplot(box_TN, aes(x=month, y=tn_ug)) +
+  geom_point()
+
+plot_grid(p1, p2, p3, labels = c('A', 'B', 'C'), label_size = 12)
+
+rlang::last_error()
+rlang::last_trace()
 ```
 
 Question: What do you observe about the variables of interest over seasons and between lakes? 
