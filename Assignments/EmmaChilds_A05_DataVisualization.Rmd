@@ -70,7 +70,19 @@ class(date_obj_today_NLT)
 
 ```{r build plot theme}
 #3
-
+my_theme <- theme_classic(base_size = 12) + 
+  theme(
+    line = element_line(
+      color='purple',
+      linewidth =2
+    ),
+    legend.background = element_rect(
+      color='grey',
+      fill = 'green'
+    ),
+    legend.title = element_text(
+      color='blue'
+        ))
 ```
 
 ## Create graphs
@@ -80,7 +92,14 @@ For numbers 4-7, create ggplot graphs and adjust aesthetics to follow best pract
 
 ```{r plot total P vs PO4}
 #4 
-
+NTL.LTER <- NTL.Chem.Nutrients.PeterPaul %>% 
+  ggplot(
+    mapping = aes(
+      x=po4,
+      y=tp_ug,
+      color=lakename)
+    ) + 
+  geom_line()
 ```
 
 
