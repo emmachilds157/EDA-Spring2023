@@ -72,17 +72,22 @@ class(date_obj_today_NLT)
 #3
 my_theme <- theme_classic(base_size = 12) + 
   theme(
+    plot.background = element_rect(
+      color = 'black',
+      fill = 'lemonchiffon'
+    ),
     line = element_line(
       color='purple',
       linewidth =2
     ),
     legend.background = element_rect(
       color='grey',
-      fill = 'green'
+      fill = 'white'
     ),
     legend.title = element_text(
-      color='blue'
-        ))
+      color='black'
+        ),
+    theme_set(my_theme))
 ```
 
 ## Create graphs
@@ -92,14 +97,27 @@ For numbers 4-7, create ggplot graphs and adjust aesthetics to follow best pract
 
 ```{r plot total P vs PO4}
 #4 
-NTL.LTER <- NTL.Chem.Nutrients.PeterPaul %>% 
+NTL.LTER <- NTL.Chem.Nutrients.PeterPaul %>%
   ggplot(
-    mapping = aes(
-      x=po4,
+    aes(x=po4,
       y=tp_ug,
       color=lakename)
     ) + 
-  geom_line()
+  geom_point(size=0.5, alpha=0.5) +
+    labs(
+      title = "Phosphorus and Phosphate Levels for Peter & Paul Lakes",
+      x="Phosphate (po4)",
+      y="Phosphorus (ug)", 
+      color="Lakename"
+    ) +
+  geom_smooth(
+    method = 'lm',
+    se = FALSE,
+    color = 'black') +
+    xlim(0,50)
+
+print(NTL.LTER)
+
 ```
 
 
@@ -109,7 +127,56 @@ Tip: R has a build in variable called `month.abb` that returns a list of months;
 
 ```{r Create boxplots}
 #5 
+#Part a.
+box_temps <- NTL.Chem.Nutrients.PeterPaul %>%
+  ggplot(
+    aes(x=factor(month,level=1:12,labels = month.abb),
+      y=temperature_C,
+      color=lakename)
+  ) + 
+  geom_boxplot(size=0.5, alpha=0.5) +
+    labs(
+      title = "Temperatures for Peter & Paul Lakes",
+      x="Month",
+      y="Temperature (C)", 
+      color="Lakename"
+    ) 
 
+print(box_temps)
+
+#Part b.
+box_TP <- NTL.Chem.Nutrients.PeterPaul %>%
+  ggplot(
+    aes(x=factor(month,level=1:12,labels = month.abb),
+      y=tp_ug,
+      color=lakename)
+  ) + 
+  geom_boxplot(size=0.5, alpha=0.5) +
+    labs(
+      title = "Total Phosphorus for Peter & Paul Lakes",
+      x="Month",
+      y="Total Phosphorus (ug)", 
+      color="Lakename"
+    ) 
+
+print(box_TP)
+
+#Part c.
+box_TN <- NTL.Chem.Nutrients.PeterPaul %>%
+  ggplot(
+    aes(x=factor(month,level=1:12,labels = month.abb),
+      y=tn_ug,
+      color=lakename)
+  ) + 
+  geom_boxplot(size=0.5, alpha=0.5) +
+    labs(
+      title = "Total Nitrogen for Peter & Paul Lakes",
+      x="Month",
+      y="Total Nitogren (ug)", 
+      color="Lakename"
+    ) 
+
+print(box_TN)
 ```
 
 Question: What do you observe about the variables of interest over seasons and between lakes? 
