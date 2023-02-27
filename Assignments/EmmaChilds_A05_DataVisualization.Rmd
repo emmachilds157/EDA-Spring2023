@@ -180,9 +180,6 @@ library(cowplot)
 
 plot_grid(box_temps, box_TP, box_TN, labels = c('Temperature (C)', 'Total Phosporus', 'Total Nitrogen'), label_size = 12)
 
-p1 <- ggplot(box_temps, aes(x=month, y=temperature_C)) + geom_point()
-p2 <- ggplot(box_TP, aes(x=month, y=tp_ug)) + geom_point()
-p3 <- ggplot(box_TN, aes(x=month, y=tn_ug)) + geom_point()
 #This last section may not be correct, but I was playing around with different methods and tried this one
 
 ```
