@@ -34,9 +34,6 @@ This exercise accompanies the lessons in Environmental Data Analytics on Data Vi
 #1 
 getwd()
 
-install.packages("tidyverse")
-install.packages("lubridate")
-install.packages("here")
 install.packages("cowplot")
 
 library(tidyverse)
@@ -114,7 +111,7 @@ NTL.LTER <- NTL.Chem.Nutrients.PeterPaul %>%
     xlim(0,50)
 
 print(NTL.LTER)
-#Plotted total phosphorus by phosphate and added best fit line. 
+#Plotted total phosphorus by phosphate and added best fit line
 ```
 
 
@@ -186,7 +183,7 @@ plot_grid(box_temps, box_TP, box_TN, labels = c('Temperature (C)', 'Total Phospo
 #p1 <- ggplot(box_temps, aes(x=month, y=temperature_C)) + geom_point()
 #p2 <- ggplot(box_TP, aes(x=month, y=tp_ug)) + geom_point()
 #p3 <- ggplot(box_TN, aes(x=month, y=tn_ug)) + geom_point()
-#This last section may not be correct, but I was playing around with different methods and tried this one. 
+#This last section may not be correct, but I was playing around with different methods and tried this one
 
 ```
 
