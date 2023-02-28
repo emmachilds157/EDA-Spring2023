@@ -178,7 +178,7 @@ print(box_TN)
 #install.packages("cowplot") - already done
 library(cowplot)
 
-plot_grid(box_temps, box_TP, box_TN, labels = c('Temperature (C)', 'Total Phosporus', 'Total Nitrogen'), label_size = 12)
+plot_grid(box_temps, box_TP, box_TN, labels = c('Temperature (C)', 'Total Phosporus', 'Total Nitrogen'), label_size = 12, nrow=3)
 
 #This last section may not be correct, but I was playing around with different methods and tried this one
 
