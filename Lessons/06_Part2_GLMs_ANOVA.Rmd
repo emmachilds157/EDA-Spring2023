@@ -17,6 +17,7 @@ editor_options:
 
 library(tidyverse)
 #install.packages("agricolae")
+install.packages("agricolae")
 library(agricolae)   #you may need to install/update package "htmltools" before installing and loading agricolae
 library(here)
 here()
@@ -88,7 +89,6 @@ summary(Litter.Totals.anova2)
 
 # Checking model fit and assumptions
 # ANOVA is robust against departures from normality.
-plot(Litter.Totals.anova2)
 
 # Post-hoc test
 # TukeyHSD() computes Tukey Honest Significant Differences
@@ -112,7 +112,7 @@ print(Litter.Totals.plot)
 
 What information does the output give us? How might we report this information in a report?
 
-> 
+> We would first have to reorder the sides (to match the group list) so we could see the changes in the level of the mean. FINISH??? What does it tell us?
 
 ## TWO-WAY ANOVA
 
@@ -159,7 +159,7 @@ TukeyHSD(Litter.anova.2way3)
 
 Litter.interaction <- with(Litter, interaction(functionalGroup, nlcdClass))
 
-#Litter.test <- cbind(Litter,Litter.interaction)
+Litter.test <- cbind(Litter,Litter.interaction)
 
 Litter.anova.2way5 <- aov(data = Litter, dryMass ~ Litter.interaction)
 
