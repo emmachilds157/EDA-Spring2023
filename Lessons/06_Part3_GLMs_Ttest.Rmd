@@ -14,7 +14,7 @@ editor_options:
 ## Set up your session
 
 ```{r, message = FALSE}
-#install.packages('formatR')
+install.packages('formatR')
 knitr::opts_chunk$set(tidy.opts=list(width.cutoff=80), tidy=TRUE)
 
 library(tidyverse)
@@ -71,6 +71,7 @@ length(EPAair$Ozone) #8976 observations
 
 O3.onesample <- t.test(EPAair$Ozone, mu = 50, alternative = "less")
 O3.onesample
+#reject null hypothesis and accepting alternative
 
 Ozone.plot <- ggplot(EPAair, aes(x = Ozone)) +
   geom_density(fill = "gray") +
@@ -105,11 +106,12 @@ ggplot(EPAair, aes(x = Ozone, color = as.factor(Year))) +
 #EPAair$Year will be our categorical variable with two levels (2018 and 2019)
 O3.twosample <- t.test(EPAair$Ozone ~ EPAair$Year)
 O3.twosample
+#We will reject null hypothesis b/c p is less than 0.05
 
 # Format as a GLM
 O3.twosample2 <- lm(EPAair$Ozone ~ EPAair$Year)
 summary(O3.twosample2)
-
+#Have to change the question a little to make this work...is year a predictor of ozone levels? And yes, we see it is b/c of the p-value!
 ```
 
 
