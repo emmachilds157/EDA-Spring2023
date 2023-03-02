@@ -89,21 +89,22 @@ print(NTL_Lake_ChemPhys_plot)
 
 6. Interpret the figure. What does it suggest with regards to the response of temperature to depth? Do the distribution of points suggest about anything about the linearity of this trend?
 
-> Answer: 
+> Answer: As depth increases, temperature of the lake decreases. However, past a certain depth (starting somewhere around 7-9m - meters?), the relationship seems to become less linear based on the distribution of points. 
 
 
 7. Perform a linear regression to test the relationship and display the results
 
 ```{r linear.regression}
 #7
-
+NTL_Lake_regression <- lm(data = NTL_Lake_ChemPhys_subset, temperature_C ~ depth)
+summary(NTL_Lake_regression)
 
 ```
 
 
 8. Interpret your model results in words. Include how much of the variability in temperature is explained by changes in depth, the degrees of freedom on which this finding is based, and the statistical significance of the result. Also mention how much temperature is predicted to change for every 1m change in depth. 
 
-> Answer:
+> Answer: The r^2 value of 0.7387 tells us that there is ~74% variability in y (temp) that is "explained" by the independent variable, x (depth). This finding is based on 9726 degrees of freedom. Our p-value is less than 0.05, so the depth is signficant enough to be included as a factor impacting temperature. In fact, the temperature is predicted to decrease by -1.94621 degrees Celsius for every 1m change in depth. 
 
 
 ---
@@ -118,8 +119,11 @@ Let's tackle a similar question from a different approach. Here, we want to expl
 
 ```{r temperature.model}
 #9
+NTLbyALL.regression <- lm(data=NTL_Lake_ChemPhys_subset, temperature_C ~ depth + year4 + daynum + depth)
+summary(NTLbyALL.regression)
+#Depth and day number seem the best suited to predict temperature after running the AIC. 
 
-
+#BUT, do we run step function?!?!?!
 
 #10
 
