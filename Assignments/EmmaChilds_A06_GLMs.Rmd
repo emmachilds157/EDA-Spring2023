@@ -1,6 +1,6 @@
 ---
 title: "Assignment 6: GLMs (Linear Regressios, ANOVA, & t-tests)"
-author: "Student Name"
+author: "Emma Childs"
 date: "Spring 2023"
 output: pdf_document
 geometry: margin=2.54cm
@@ -27,10 +27,24 @@ This exercise accompanies the lessons in Environmental Data Analytics on general
 
 ```{r setup2}
 #1
+library(tidyverse)
+library(agricolae)   
+library(here)
+library(lubridate)
+library(dplyr)
+here()
 
+NTL_Lake_ChemPhys <- read.csv(here("Data/Raw/NTL-LTER_Lake_ChemistryPhysics_Raw.csv"), stringsAsFactors = TRUE)
+
+NTL_Lake_ChemPhys$sampledate <- mdy(NTL_Lake_ChemPhys$sampledate)
+#installed packages and imported dataset
 
 #2
-
+mytheme <- theme_classic(base_size = 12) +
+  theme(axis.text = element_text(color = "purple"), 
+        legend.position = "top")
+theme_set(mytheme)
+#set a theme
 
 ```
 
@@ -38,9 +52,9 @@ This exercise accompanies the lessons in Environmental Data Analytics on general
 Our first research question is: Does mean lake temperature recorded during July change with depth across all lakes?
 
 3. State the null and alternative hypotheses for this question:
-> Answer:
-H0: 
-Ha: 
+> Answer: 
+H0: The mean lake temperature recorded during July does not change with depth across all lakes.
+Ha: The mean lake temperature recorded during July does change with depth across all lakes. 
 
 
 4.  Wrangle your NTL-LTER dataset with a pipe function so that the records meet the following criteria: 
@@ -52,11 +66,24 @@ Ha:
 
 ```{r scatterplot}
 #4
-
+NTL_Lake_ChemPhys_subset <-
+  NTL_Lake_ChemPhys %>%
+  filter(month(sampledate) == 7) %>%
+  select(lakename:daynum, depth, temperature_C) %>%
+  drop_na()
+#Wrangled a pipe function so that we filtered for July, and only depicted the columns: lakename, year4, daynum, depth, temperature_C
 
 #5
-
-
+NTL_Lake_ChemPhys_plot <-
+ggplot(NTL_Lake_ChemPhys_subset, aes(x=depth,y=temperature_C)) +
+  geom_point() +
+  ylim(0, 35) + 
+  geom_smooth(method="lm", color="darkgreen", se=FALSE)
+  labs(x = "Depth",
+       y = "Temperature (C)",
+    title = "Lake Temperature by Depth")
+print(NTL_Lake_ChemPhys_plot) 
+#plotted temperature by depth for this subset of data with a smoothed line for the linear model
 ```
 
 
