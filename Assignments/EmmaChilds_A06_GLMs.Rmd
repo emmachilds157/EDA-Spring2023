@@ -41,7 +41,7 @@ NTL_Lake_ChemPhys$sampledate <- mdy(NTL_Lake_ChemPhys$sampledate)
 
 #2
 mytheme <- theme_classic(base_size = 12) +
-  theme(axis.text = element_text(color = "purple"), 
+  theme(axis.text = element_text(color = "black"), 
         legend.position = "top")
 theme_set(mytheme)
 #set a theme
@@ -76,14 +76,16 @@ NTL_Lake_ChemPhys_subset <-
 #5
 NTL_Lake_ChemPhys_plot <-
 ggplot(NTL_Lake_ChemPhys_subset, aes(x=depth,y=temperature_C)) +
-  geom_point() +
+  geom_point(color='darkblue') +
   ylim(0, 35) + 
-  geom_smooth(method="lm", color="darkgreen", se=FALSE)
-  labs(x = "Depth",
-       y = "Temperature (C)",
+  geom_smooth(method="lm", color="red", se=FALSE) +
+  labs(x = "Depth", 
+       y = "Temperature (°C)",
     title = "Lake Temperature by Depth")
 print(NTL_Lake_ChemPhys_plot) 
 #plotted temperature by depth for this subset of data with a smoothed line for the linear model
+
+#?drop_na - trying to understand this function better because missing rows were reported - no conclusion 
 ```
 
 
@@ -104,7 +106,7 @@ summary(NTL_Lake_regression)
 
 8. Interpret your model results in words. Include how much of the variability in temperature is explained by changes in depth, the degrees of freedom on which this finding is based, and the statistical significance of the result. Also mention how much temperature is predicted to change for every 1m change in depth. 
 
-> Answer: The r^2 value of 0.7387 tells us that there is ~74% variability in y (temp) that is "explained" by the independent variable, x (depth). This finding is based on 9726 degrees of freedom. Our p-value is less than 0.05, so the depth is signficant enough to be included as a factor impacting temperature. In fact, the temperature is predicted to decrease by -1.94621 degrees Celsius for every 1m change in depth. 
+> Answer: The r^2 value of 0.7387 tells us that there is ~74% variability in y (temp) that is "explained" by the independent variable, x (depth). This finding is based on 9726 degrees of freedom. Our p-value is less than 0.05, so the depth is significant enough to be included as a factor impacting temperature. In fact, the temperature is predicted to decrease by -1.94621 degrees Celsius for every 1m change in depth. 
 
 
 ---
@@ -119,14 +121,20 @@ Let's tackle a similar question from a different approach. Here, we want to expl
 
 ```{r temperature.model}
 #9
-NTLbyALL.regression <- lm(data=NTL_Lake_ChemPhys_subset, temperature_C ~ depth + year4 + daynum + depth)
+NTL.metagaming <- NTL_Lake_ChemPhys_subset 
+noise <- runif(nrow(NTL_Lake_ChemPhys_subset))
+NTL.metagaming$noise <- noise
+#Experimenting....will explain more - EMMA tell come back to this 
+
+NTLbyALL.regression <- lm(data=NTL.metagaming, temperature_C ~ depth + year4 + daynum + depth + noise)
+step(NTLbyALL.regression)
 summary(NTLbyALL.regression)
+
 #Depth and day number seem the best suited to predict temperature after running the AIC. 
 
-#BUT, do we run step function?!?!?!
-
 #10
-
+NTLBest.regression <- lm(data=NTL.metagaming, temperature_C ~ depth + year4 + daynum + depth)
+summary(NTLBest.regression)
 
 ```
 
