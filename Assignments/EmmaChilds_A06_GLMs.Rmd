@@ -141,7 +141,7 @@ summary(NTLBest.regression)
 11. What is the final set of explanatory variables that the AIC method suggests we use to predict temperature in our multiple regression? How much of the observed variance does this model explain? Is this an improvement over the model using only depth as the explanatory variable?
 
 > Answer: 
-
+Come back to answer this!
 
 
 ---
@@ -151,7 +151,12 @@ summary(NTLBest.regression)
 
 ```{r anova.model}
 #12
+NTL.anova <- aov(data = NTL_Lake_ChemPhys_subset, temperature_C ~ lakename)
+summary(NTL.anova)
 
+NTL.linearmodel <- lm(data=NTL_Lake_ChemPhys_subset, temperature_C ~ lakename)
+summary(NTL.linearmodel)
+#come back and trouble shoot if this lm() was correct, check with classmates
 
 ```
 
@@ -165,7 +170,15 @@ summary(NTLBest.regression)
 
 ```{r scatterplot.2}
 #14.
-
+NTL_Lake_ChemPhys_plot2 <-
+ggplot(NTL_Lake_ChemPhys_subset, aes(x=depth,y=temperature_C,color=lakename)) +
+  geom_point(alpha=0.5) +
+  ylim(0, 35) + 
+  geom_smooth(method="lm", color="red", se=FALSE) +
+  labs(x = "Depth", 
+       y = "Temperature (°C)",
+    title = "Lake Temperature by Depth")
+print(NTL_Lake_ChemPhys_plot2) 
 
 ```
 
@@ -173,7 +186,15 @@ summary(NTLBest.regression)
 
 ```{r tukey.test}
 #15
-
+TukeyHSD(NTL.anova)
+Tuk.lakemeans <- TukeyHSD(NTL.anova)
+Tuk.table <-
+Tuk.lakemeans$lakename %>%
+  as.data.frame() %>%
+  arrange(abs(diff))
+row.names(Tuk.table)
+Tuk.table %>%
+  filter(str_detect(row.names(Tuk.table),"Peter Lake"))
 
 ```
 
