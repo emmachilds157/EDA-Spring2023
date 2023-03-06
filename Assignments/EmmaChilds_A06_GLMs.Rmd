@@ -79,7 +79,7 @@ ggplot(NTL_Lake_ChemPhys_subset, aes(x=depth,y=temperature_C)) +
   geom_point(color='darkblue') +
   ylim(0, 35) + 
   geom_smooth(method="lm", color="red", se=FALSE) +
-  labs(x = "Depth", 
+  labs(x = "Depth (m)", 
        y = "Temperature (°C)",
     title = "Lake Temperature by Depth")
 print(NTL_Lake_ChemPhys_plot) 
@@ -124,18 +124,18 @@ Let's tackle a similar question from a different approach. Here, we want to expl
 NTL.metagaming <- NTL_Lake_ChemPhys_subset 
 noise <- runif(nrow(NTL_Lake_ChemPhys_subset))
 NTL.metagaming$noise <- noise
-#Experimenting....will explain more - EMMA tell come back to this 
+#This first section was an experiment...I was working with a friend who does a lot of coding regularly, and they had me create a "metagaming" scenario with a column of fake noise numbers to see if the AIC would kick it out as being not significant. This was helpful for me, but my real code for the regression and step function is below.
 
 NTLbyALL.regression <- lm(data=NTL.metagaming, temperature_C ~ depth + year4 + daynum + depth + noise)
 step(NTLbyALL.regression)
 summary(NTLbyALL.regression)
 
-#Depth and day number seem the best suited to predict temperature after running the AIC. 
+#Depth and day number seem the best suited (based on statistical significance) to predict temperature after running the AIC. 
 
 #10
 NTLBest.regression <- lm(data=NTL.metagaming, temperature_C ~ depth + year4 + daynum + depth)
 summary(NTLBest.regression)
-
+#Ran the multiple regression lm function, which yielded similar results. At this point, NTL.metagaming and NTL_Lake_ChemPhys_subset are the same data. 
 ```
 
 11. What is the final set of explanatory variables that the AIC method suggests we use to predict temperature in our multiple regression? How much of the observed variance does this model explain? Is this an improvement over the model using only depth as the explanatory variable?
@@ -156,7 +156,6 @@ summary(NTL.anova)
 
 NTL.linearmodel <- lm(data=NTL_Lake_ChemPhys_subset, temperature_C ~ lakename)
 summary(NTL.linearmodel)
-#come back and trouble shoot if this lm() was correct, check with classmates
 
 ```
 
@@ -174,7 +173,7 @@ NTL_Lake_ChemPhys_plot2 <-
 ggplot(NTL_Lake_ChemPhys_subset, aes(x=depth,y=temperature_C,color=lakename)) +
   geom_point(alpha=0.5) +
   ylim(0, 35) + 
-  geom_smooth(method="lm", color="red", se=FALSE) +
+  geom_smooth(method="lm", se=FALSE) +
   labs(x = "Depth", 
        y = "Temperature (°C)",
     title = "Lake Temperature by Depth")
@@ -187,15 +186,10 @@ print(NTL_Lake_ChemPhys_plot2)
 ```{r tukey.test}
 #15
 TukeyHSD(NTL.anova)
-Tuk.lakemeans <- TukeyHSD(NTL.anova)
-Tuk.table <-
-Tuk.lakemeans$lakename %>%
-  as.data.frame() %>%
-  arrange(abs(diff))
-row.names(Tuk.table)
-Tuk.table %>%
-  filter(str_detect(row.names(Tuk.table),"Peter Lake"))
 
+#16.
+temp.lake.test <- HSD.test(NTL.anova, "lakename", group=TRUE)
+temp.lake.test
 ```
 
 16.From the findings above, which lakes have the same mean temperature, statistically speaking, as Peter Lake? Does any lake have a mean temperature that is statistically distinct from all the other lakes?
@@ -213,7 +207,12 @@ Tuk.table %>%
 18. Wrangle the July data to include only records for Crampton Lake and Ward Lake. Run the two-sample T-test on these data to determine whether their July temperature are same or different. What does the test say? Are the mean temperatures for the lakes equal? Does that match you answer for part 16?
 
 ```{r t.test}
+NTL.ward.crampton <- NTL_Lake_ChemPhys_subset %>%
+  filter(lakename == "Crampton Lake" | lakename == "Ward Lake")
+NTL.ward.crampton
 
+NTL.twosample <- t.test(NTL.ward.crampton$temperature_C ~ NTL.ward.crampton$lakename) 
+NTL.twosample
 ```
 
 >Answer: 
