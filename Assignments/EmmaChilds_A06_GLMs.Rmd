@@ -106,7 +106,7 @@ summary(NTL_Lake_regression)
 
 8. Interpret your model results in words. Include how much of the variability in temperature is explained by changes in depth, the degrees of freedom on which this finding is based, and the statistical significance of the result. Also mention how much temperature is predicted to change for every 1m change in depth. 
 
-> Answer: The r^2 value of 0.7387 tells us that there is ~74% variability in y (temp) that is "explained" by the independent variable, x (depth). This finding is based on 9726 degrees of freedom. Our p-value is less than 0.05, so the depth is significant enough to be included as a factor impacting temperature. In fact, the temperature is predicted to decrease by -1.94621 degrees Celsius for every 1m change in depth. 
+> Answer: The r^2 value of 0.7387 tells us that there is 73.87% variability in y (temp) that is "explained" by the independent variable, x (depth). This finding is based on 9726 degrees of freedom. Our p-value is less than 0.05, so the depth is significant enough to be included as a factor impacting temperature. In fact, the temperature is predicted to decrease by -1.94621 degrees Celsius for every 1m change in depth. 
 
 
 ---
@@ -141,7 +141,7 @@ summary(NTLBest.regression)
 11. What is the final set of explanatory variables that the AIC method suggests we use to predict temperature in our multiple regression? How much of the observed variance does this model explain? Is this an improvement over the model using only depth as the explanatory variable?
 
 > Answer: 
-Come back to answer this!
+The AIC uses year4, daynum and depth as explanatory variables, though the year has the least statistical significance of the three. The model explains 74.11% of the observed variance, which is slightly better than only using depth, but it does not seem like a large increase. 
 
 
 ---
@@ -161,7 +161,7 @@ summary(NTL.linearmodel)
 
 13. Is there a significant difference in mean temperature among the lakes? Report your findings. 
 
-> Answer: 
+> Answer: There is a significant difference in mean temperatures among the lakes, based on the p-values we get from running the linear model. All of the lakes are showing high significance codes. 
 
 
 
@@ -194,13 +194,13 @@ temp.lake.test
 
 16.From the findings above, which lakes have the same mean temperature, statistically speaking, as Peter Lake? Does any lake have a mean temperature that is statistically distinct from all the other lakes?
 
->Answer:
+>Answer: Statistically speaking, Ward Lake, Paul Lake and Peter Lake all are in the same "c" group provided by the HSD test, which indicates they have similar mean temperatures. It does not look like any lake is in a category all by itself, so based on that, no, none appear to be statistically distinct from all the other lakes. 
 
  
 
 17. If we were just looking at Peter Lake and Paul Lake. What's another test we might explore to see whether they have distinct mean temperatures? 
 
->Answer: 
+>Answer: We could run a two-sample t-test to assess their mean temperatures and statistical significance. 
 
 
 
@@ -215,4 +215,4 @@ NTL.twosample <- t.test(NTL.ward.crampton$temperature_C ~ NTL.ward.crampton$lake
 NTL.twosample
 ```
 
->Answer: 
+>Answer: The means for Crampton Lake and Ward Lake seem generally similar, just looking at numbers (15.35 vs 14.46). The test indicates the p-value is 0.2649, which is not statistically significant in terms of their means being different. So yes, this matches our answer from part 16.
