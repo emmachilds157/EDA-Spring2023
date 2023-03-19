@@ -37,7 +37,7 @@ Create a table below summarizing the metadata of the EPA Air Quality data. The f
 
 Set the following R code chunk so that it runs when knit, but no messages, errors, or any output is shown. The code itself should be displayed.
 
-```{r project.setup, warning=FALSE, message=FALSE}
+```{r project.setup, echo=TRUE, warning=FALSE, message=FALSE}
 #Import libraries
 library(tidyverse);library(lubridate);library(here);library(knitr)
 
@@ -62,7 +62,7 @@ Customize the chunk options such that the code is run but is not displayed in th
 >
 > -   If your output table spans across two pages, try inserting a new line (via `\newpage`) in the markdown just before your code chunk.
 
-```{r data.summary, echo=F}
+```{r data.summary, echo=FALSE}
 #Compute mean PM2.5 concentration for each county, sorted by value
 summary_PM25 <- epa_data %>% 
   drop_na(PM2.5) %>% 
@@ -79,16 +79,14 @@ summary_Ozone <- epa_data %>%
   arrange(mean_Ozone)
 
 #Use the `kable` function to produce the 2 tables
+#Table 1 for mean PM2.5 concentration by county
+kable(summary_PM25,caption = "Mean Particulates (2.5mm)",
+      col.names=c("$\\mu g/m^3$", "County"))
 
-kable(x, format, digits = getOption("digits"), row.names = NA,
-  col.names = "County","µg/m3", align, caption = NULL, label = NULL,
-  format.args = list(), escape = TRUE, ...) #FINISH
+#Table 2 for mean ozone concentration by county
+kable(summary_PM25,caption = "Mean Ozone",
+      col.names=c("$\\mu g/m^3$", "County"))
 
-#or this one below?
-
-kable(summary_PM25,caption = "Mean Particulates (2.5mm)")
-kable(summary_Ozone,caption = "Mean Ozone")
-#And the column names should be "County" and "µg/m3" for both tables.
 
 ```
 
@@ -101,7 +99,19 @@ Create two separate code chunks that create boxplots of the distribution of Ozon
 \newpage
 
 ```{r boxplots}
-#boxplots
+Ozone2018 <- epa_data %>%
+  select(Ozone) %>%
+  select(Month(2018))
+
+ggplot(data=#finish, aes(x=sampledate,y=tn_ug,color=lakename)) +
+  geom_point(alpha=0.3) +
+  geom_smooth(se=F) +
+  labs(
+    title ='Total N over time',
+    x = 'Date',
+    y = expression(paste('Total N (',mu,'g)')),
+    color = "Lake"
+  )
 ```
 
 ## Task 4: Knit and submit.
