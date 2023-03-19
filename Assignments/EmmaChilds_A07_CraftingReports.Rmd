@@ -3,6 +3,8 @@ title: 'A07 - Crafting Reports'
 author: "Emma Childs" 
 date: "Spring 2023"
 output: pdf_document
+toc: true
+toc_float: false
 ---
 
 ## Objectives:
@@ -62,6 +64,8 @@ Customize the chunk options such that the code is run but is not displayed in th
 >
 > -   If your output table spans across two pages, try inserting a new line (via `\newpage`) in the markdown just before your code chunk.
 
+\newpage
+
 ```{r data.summary, echo=FALSE}
 #Compute mean PM2.5 concentration for each county, sorted by value
 summary_PM25 <- epa_data %>% 
@@ -87,7 +91,6 @@ kable(summary_PM25,caption = "Mean Particulates (2.5mm)",
 kable(summary_PM25,caption = "Mean Ozone",
       col.names=c("$\\mu g/m^3$", "County"))
 
-
 ```
 
 \newpage
@@ -98,20 +101,20 @@ Create two separate code chunks that create boxplots of the distribution of Ozon
 
 \newpage
 
-```{r boxplots}
-Ozone2018 <- epa_data %>%
-  select(Ozone) %>%
-  select(Month(2018))
+```{r boxplots, echo=FALSE, fig.align='left', fig.height=2.5, fig.cap="Ozone Distribution by Month, 2018 & 2019"}
 
-ggplot(data=#finish, aes(x=sampledate,y=tn_ug,color=lakename)) +
-  geom_point(alpha=0.3) +
-  geom_smooth(se=F) +
+Ozone2018 <- epa_data %>%
+  filter(Ozone & Year < 2019) 
+  
+ggplot(data=Ozone2018, aes(x=Month,y=Ozone,color=Year)) +
+  geom_boxplot(alpha=0.3) +
   labs(
-    title ='Total N over time',
-    x = 'Date',
-    y = expression(paste('Total N (',mu,'g)')),
-    color = "Lake"
+    title ='Ozone Distribution by Month and Year',
+    x = 'Month',
+    y = expression(paste('Ozone (mu g/m^3)')),
+    color = "Year"
   )
+
 ```
 
 ## Task 4: Knit and submit.
