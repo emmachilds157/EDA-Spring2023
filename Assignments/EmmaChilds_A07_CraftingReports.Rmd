@@ -41,7 +41,7 @@ Set the following R code chunk so that it runs when knit, but no messages, error
 
 ```{r project.setup, echo=TRUE, warning=FALSE, message=FALSE}
 #Import libraries
-library(tidyverse);library(lubridate);library(here);library(knitr)
+library(tidyverse);library(lubridate);library(here);library(knitr); library(dplyr)
 
 #Imported EPA data (from the Processed_KEY folder) & fixed dates
 epa_data <- read.csv(
@@ -103,6 +103,31 @@ Create two separate code chunks that create boxplots of the distribution of Ozon
 
 ```{r boxplots, echo=FALSE, warning=FALSE, fig.align='left', fig.height=2.5, fig.cap="Ozone Distribution by Month, 2018 & 2019"}
 
+#Filtered Ozone data from 2018
+Ozone2018 <- epa_data %>%
+  filter(Year == '2018') 
+
+#Filtered Ozone data from 2018
+Ozone2019 <- epa_data %>%
+  filter(Year == '2019') 
+  
+ggplot(Ozone2018, aes(x=factor(Month, level=1:12, labels=month.abb),y=Ozone)) +
+  geom_boxplot() +
+  labs(
+    title ='Ozone Distribution by Month (2018)',
+    x = 'Month',
+    y = 'Ozone (mu g/m^3)'
+  )
+
+ggplot(Ozone2019, aes(x=factor(Month, level=1:12, labels=month.abb),y=Ozone)) +
+  geom_boxplot() +
+  labs(
+    title ='Ozone Distribution by Month (2019)',
+    x = 'Month',
+    y = 'Ozone (mu g/m^3)'
+  )
+
+#Built two ggplots from these subsetted datasets
 ```
 
 ## Task 4: Knit and submit.
