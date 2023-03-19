@@ -104,15 +104,17 @@ Create two separate code chunks that create boxplots of the distribution of Ozon
 ```{r boxplots, echo=FALSE, fig.align='left', fig.height=2.5, fig.cap="Ozone Distribution by Month, 2018 & 2019"}
 
 Ozone2018 <- epa_data %>%
-  filter(Ozone & Year < 2019) 
+  filter(Ozone & Year <= 2018) 
+
+Ozone2019 <- epa_data %>%
+  filter(Ozone & Year >= 2019) 
   
-ggplot(data=Ozone2018, aes(x=Month,y=Ozone,color=Year)) +
+ggplot(data=Ozone2018, aes(x=Month,y=Ozone,color='lightblue')) +
   geom_boxplot(alpha=0.3) +
   labs(
-    title ='Ozone Distribution by Month and Year',
+    title ='Ozone Distribution by Month: 2018',
     x = 'Month',
-    y = expression(paste('Ozone (mu g/m^3)')),
-    color = "Year"
+    y = expression(paste('Ozone (mu g/m^3)'))
   )
 
 ```
