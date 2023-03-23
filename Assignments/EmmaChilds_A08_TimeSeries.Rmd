@@ -79,8 +79,11 @@ GaringerOzone_dated <- as.Date(GaringerOzone$Date)
 
 #4
 GaringerOzone_subset <-
-  GaringerOzone_dated %>%
+  GaringerOzone %>%
   select(Date, Daily.Max.8.hour.Ozone.Concentration, DAILY_AQI_VALUE)
+
+summary(GaringerOzone_subset$Daily.Max.8.hour.Ozone.Concentration)
+#trying to find missing values
 
 #5
 
