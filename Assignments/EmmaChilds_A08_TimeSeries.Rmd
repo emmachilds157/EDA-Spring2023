@@ -60,7 +60,7 @@ Garinger2017 <- read.csv(here("Data/Raw/Ozone_TimeSeries/EPAair_O3_GaringerNC201
 Garinger2018 <- read.csv(here("Data/Raw/Ozone_TimeSeries/EPAair_O3_GaringerNC2018_raw.csv"), stringsAsFactors = TRUE)
 Garinger2019 <- read.csv(here("Data/Raw/Ozone_TimeSeries/EPAair_O3_GaringerNC2019_raw.csv"), stringsAsFactors = TRUE)
 
-GaringerOzone <- as.data.frame(Garinger2010, Garinger2011, Garinger2012, Garinger2013, Garinger2014, Garinger2015, Garinger2016, Garinger2017, Garinger2018, Garinger2019)
+GaringerOzone <- rbind(Garinger2010, Garinger2011, Garinger2012, Garinger2013, Garinger2014, Garinger2015, Garinger2016, Garinger2017, Garinger2018, Garinger2019)
 ```
 
 ## Wrangle
@@ -74,21 +74,26 @@ GaringerOzone <- as.data.frame(Garinger2010, Garinger2011, Garinger2012, Garinge
 6. Use a `left_join` to combine the data frames. Specify the correct order of data frames within this function so that the final dimensions are 3652 rows and 3 columns. Call your combined data frame GaringerOzone. 
 
 ```{r}
-#3
+#3 
 GaringerOzone_dated <- as.Date(GaringerOzone$Date)
+#turning date column to date class
 
 #4
 GaringerOzone_subset <-
   GaringerOzone %>%
   select(Date, Daily.Max.8.hour.Ozone.Concentration, DAILY_AQI_VALUE)
+#subsetting data to just include these 4 columns
 
 summary(GaringerOzone_subset$Daily.Max.8.hour.Ozone.Concentration)
-#trying to find missing values
+#trying to find missing values - not sure if it was successful
 
 #5
+Days <- as.data.frame(seq(as.Date("2010-01-01"), as.Date("2019-12-31"), by = "1 day"))
+colnames(Days) <- "Date"
+#creating daily dataset, filling in missing values with NA
 
 #6
-
+GaringerOzone <- left_join(Days, GaringerOzone)
 
 ```
 
