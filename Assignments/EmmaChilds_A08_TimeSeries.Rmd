@@ -75,7 +75,7 @@ GaringerOzone <- rbind(Garinger2010, Garinger2011, Garinger2012, Garinger2013, G
 
 ```{r}
 #3 
-GaringerOzone_dated <- as.Date(GaringerOzone$Date)
+GaringerOzone$Date <- ymd(GaringerOzone$Date)
 #turning date column to date class
 
 #4
@@ -93,7 +93,7 @@ colnames(Days) <- "Date"
 #creating daily dataset, filling in missing values with NA
 
 #6
-GaringerOzone <- left_join(Days, GaringerOzone)
+GaringerOzone_new <- left_join(Days, GaringerOzone_subset)
 
 ```
 
