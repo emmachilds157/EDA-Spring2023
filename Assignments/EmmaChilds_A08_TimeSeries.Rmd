@@ -103,6 +103,12 @@ GaringerOzone_new <- left_join(Days, GaringerOzone_subset)
 
 ```{r}
 #7
+OzoneOverTime_Line <- ggplot(GaringerOzone_new, 
+    aes(x = Date, y = DAILY_AQI_VALUE)) +
+    geom_smooth(method = lm)
+
+      
+                      
 
 ```
 
