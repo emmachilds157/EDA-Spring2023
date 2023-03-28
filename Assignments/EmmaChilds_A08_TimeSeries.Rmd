@@ -37,6 +37,7 @@ library(trend)
 install.packages("zoo")
 library(zoo)
 library(dplyr)
+library(scales)
 
 mytheme <- theme_classic(base_size = 12) +
   theme(axis.text = element_text(color = "black"), 
@@ -104,11 +105,12 @@ GaringerOzone_new <- left_join(Days, GaringerOzone_subset)
 ```{r}
 #7
 OzoneOverTime_Line <- ggplot(GaringerOzone_new, 
-    aes(x = Date, y = DAILY_AQI_VALUE)) +
-    geom_smooth(method = lm)
-
-      
-                      
+    aes(x = Date, y = Daily.Max.8.hour.Ozone.Concentration)) +
+  scale_x_date(labels = date_format("%Y"), date_breaks = "1 year") + 
+      geom_line() +
+    geom_smooth(method = lm, color = "purple", se = F) +
+    labs(y = "Ozone Concentration (ppm)")
+print(OzoneOverTime_Line)
 
 ```
 
@@ -123,6 +125,7 @@ Study question: Have ozone concentrations changed over the 2010s at this station
 ```{r}
 #8
 
+#na.approx()
 ```
 
 > Answer: 
@@ -132,7 +135,7 @@ Study question: Have ozone concentrations changed over the 2010s at this station
 
 ```{r}
 #9
-
+#pipe function mutate, then group by (Month, Year), then summarise
 ```
 
 
