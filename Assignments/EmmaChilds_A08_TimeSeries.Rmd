@@ -114,7 +114,7 @@ print(OzoneOverTime_Line)
 
 ```
 
->Answer:
+>Answer: The data looks like there might be slight linear decrease in ozone concentration over time, but it seems very slight, and without statistical analysis, I don't think we can verify if it is significant. But using the eyeball test of sorts, it looks like it is decreasing slightly. 
 
 ## Time Series Analysis
 
@@ -124,17 +124,20 @@ Study question: Have ozone concentrations changed over the 2010s at this station
 
 ```{r}
 #8
+summary(GaringerOzone_new$Daily.Max.8.hour.Ozone.Concentration)
 
-#na.approx()
+GaringerOzone_2010s <- na.approx(GaringerOzone_new$Daily.Max.8.hour.Ozone.Concentration)
 ```
 
-> Answer: 
+> Answer: We use a linear interpolation to fill in this missing data for ozone concentration because the graphed data depict a linear trend. This helps account for the na's that we estimated/approximated. 
 
 
 9. Create a new data frame called `GaringerOzone.monthly` that contains aggregated data: mean ozone concentrations for each month. In your pipe, you will need to first add columns for year and month to form the groupings. In a separate line of code, create a new Date column with each month-year combination being set as the first day of the month (this is for graphing purposes only)
 
 ```{r}
 #9
+#GaringerOzone.monthly <- GaringerOzone_new %>%
+  #mutate(GaringerOzone_new)
 #pipe function mutate, then group by (Month, Year), then summarise
 ```
 
