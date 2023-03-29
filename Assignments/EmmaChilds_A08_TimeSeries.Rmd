@@ -26,7 +26,9 @@ This exercise accompanies the lessons in Environmental Data Analytics on general
 * Load the tidyverse, lubridate, zoo, and trend packages
 * Set your ggplot theme
 
-```{r}
+```{r, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(tidy.opts = list(width.cutoff=45), tidy=TRUE)
+                      
 #1
 getwd()
 
@@ -183,7 +185,7 @@ Garinger_monthly_seasonal <- trend::smk.test(GaringerOzone.monthly.ts)
 
 ```
 
-> Answer: The seasonal Mann-Kendall is FINISH EMMA 
+> Answer: The seasonal Mann-Kendall is used for time series frames that have seasonality trends, which this one does, so it is the best tool to use. 
 
 13. Create a plot depicting mean monthly ozone concentrations over time, with both a geom_point and a geom_line layer. Edit your axis labels accordingly.
 
