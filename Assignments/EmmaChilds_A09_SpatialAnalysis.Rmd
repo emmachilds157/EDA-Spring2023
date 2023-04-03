@@ -153,19 +153,23 @@ Lastly, we want to attach some gage height data to our site locations. I've cons
 
 ```{r}
 #14. Read the site flow data into a data frame
-
+NWIS_gageheights <- read_csv('./Data/Raw/NWIS_SiteFlowData_NE_RAW.csv') %>%
+  #colClasses = c('site_no' = 'factor') %>%
+  #group_by(site_no, station_nm) %>%
+  #summarize(MeanGageHeight = mean(gage_ht))
+        
 
 #15. Show the column names
-
+colnames(NWIS_gageheights)
 
 #16. Join the flow data to our NWIS gage location spatial dataframe
-
+#left_join
 
 #17. Show the column names of the joined dataset
-
+#colnames()
 
 #18. Show the dimensions of this joined dataset
-
+#dim()
 
 ```
 
