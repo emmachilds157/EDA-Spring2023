@@ -153,30 +153,24 @@ Lastly, we want to attach some gage height data to our site locations. I've cons
 
 ```{r}
 #14. Read the site flow data into a data frame
-NWIS_gageheights <- read_csv('./Data/Raw/NWIS_SiteFlowData_NE_RAW.csv') %>%
+#NWIS_gageheights <- read_csv('./Data/Raw/NWIS_SiteFlowData_NE_RAW.csv') %>%
   #colClasses = c('site_no' = 'factor') %>%
   #group_by(site_no, station_nm) %>%
   #summarize(MeanGageHeight = mean(gage_ht))
-        
+        #I have tried everything and can't get this pipe to work for some unknown reason! 
 
 #15. Show the column names
-colnames(NWIS_gageheights)
+#colnames(NWIS_gageheights)
+  #I can't run these since I cannot get the NWIS gage heights to run, but I'm including them so you can see my work!
 
 #16. Join the flow data to our NWIS gage location spatial dataframe
-#flow_gage_sf_join <- NWIS_gagelocations %>% 
-  #left_join(What file?, by = c("GEOID" = "FIPS") )
-#OR
-huc8_sf_join = merge(x = huc8_sf,
-                     y = wind_raw,
-                     by.x = 'HUC_8',
-                     by.y = 'HUC_8')
-
+#gageheight_sites_sf_join = merge(x = NWIS_gageheights,
 
 #17. Show the column names of the joined dataset
-#colnames()
+#colnames(gageheight_sites_sf_join)
 
 #18. Show the dimensions of this joined dataset
-#dim()
+#dim(gageheight_sites_sf_join)
 
 ```
 
@@ -188,7 +182,7 @@ Now we can examine where the flooding appears most acute by visualizing gage hei
 
 ```{r}
 #Map the points, sized by gage height
-
+#I have spent so much time on this assignment, and it is already late, am I'm feeling totally stuck. I hope to come to TA office hours at some point, but I simply must move on to the next thing. I apologize for turning it in incomplete!
 
 ```
 
