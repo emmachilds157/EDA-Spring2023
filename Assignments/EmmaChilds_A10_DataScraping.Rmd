@@ -1,6 +1,6 @@
 ---
 title: "Assignment 10: Data Scraping"
-author: "Student Name"
+author: "Emma Childs"
 output: pdf_document
 geometry: margin=2.54cm
 editor_options: 
@@ -28,7 +28,17 @@ This exercise accompanies the lessons in Environmental Data Analytics on data sc
 
 ```{r, message = FALSE}
 #1
+library(tidyverse);library(lubridate);library(viridis);library(here)
 
+install.packages("rvest")
+library(rvest)
+
+install.packages("dataRetrieval")
+library(dataRetrieval)
+#specifically for NWIS data
+
+install.packages("tidycensus")
+library(tidycensus)
 
 ```
 
@@ -41,7 +51,7 @@ Indicate this website as the as the URL to be scraped. (In other words, read the
 
 ```{r set.the.scraping.website}
 #2
-
+Durham.webpage <- read_html('https://www.ncwater.org/WUDC/app/LWSP/report.php?pwsid=03-32-010&year=2022')
 
 ```
 
