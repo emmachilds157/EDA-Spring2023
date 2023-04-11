@@ -71,7 +71,9 @@ In the code chunk below scrape these values, assigning them to four separate var
 
 ```{r scrape.the.data}
 #3
-water.system.name <- 
+water.system.name <-  Durham.water.resources.webpage %>% 
+  html_nodes("INSERT") %>% 
+  html_text()
   
 PWSID <- 
   
