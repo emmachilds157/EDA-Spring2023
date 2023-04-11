@@ -40,6 +40,7 @@ library(dataRetrieval)
 install.packages("tidycensus")
 library(tidycensus)
 
+knitr::opts_chunk$set(tidy.opts = list(width.cutoff=80), tidy=TRUE)
 ```
 
 2. We will be scraping data from the NC DEQs Local Water Supply Planning website, specifically the Durham's 2022 Municipal Local Water Supply Plan (LWSP): 
@@ -120,12 +121,12 @@ max.withdrawals.month <- Durham.webpage %>%
 #I can't run this because I still can't get my max.withdrawals.month to run, but I think I still understand the concept!
 
 #5
-ggplot(Durham.water.df,aes(x=max.withdrawals.month,y=max.withdrawals.mgd)) +
-geom_point() +
-labs(title = paste("2022 Max Withdrawals for Durham", water.system.name),
-subtitle = paste("PSWID", pswid),
-y="Max Withdrawals",
-x="Month")
+#ggplot(Durham.water.df,aes(x=max.withdrawals.month,y=max.withdrawals.mgd)) +
+#geom_point() +
+#labs(title = paste("2022 Max Withdrawals for Durham", water.system.name),
+#subtitle = paste("PSWID", pswid),
+#y="Max Withdrawals",
+#x="Month")
 
 
 ```
