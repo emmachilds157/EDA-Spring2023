@@ -71,15 +71,22 @@ In the code chunk below scrape these values, assigning them to four separate var
 
 ```{r scrape.the.data}
 #3
-water.system.name <-  Durham.water.resources.webpage %>% 
-  html_nodes("INSERT") %>% 
+water.system.name <-  Durham.webpage %>% 
+  html_nodes("div+ table tr:nth-child(1) td:nth-child(2)") %>% 
   html_text()
   
-PWSID <- 
+PWSID <- Durham.webpage %>%
+  html_nodes("td tr:nth-child(1) td:nth-child(5)") %>%
+  html_text()
   
-ownership <- 
+ownership <- Durham.webpage %>%
+  html_nodes("div+ table tr:nth-child(2) td:nth-child(4)") %>%
+  html_text()
 
-max.withdrawals.mgd <- 
+max.withdrawals.mgd <- Durham.webpage %>%
+  html_nodes("th~ td+ td") %>%
+  html_text()
+#the question asks for Max Day Use, but there isn't a value in the MGD columns that is equal to 27.6400 as described in the hint above. I highlighted the column that started with 36.1000 because that corresponds to the MDG I'm seeing on the water website. 
 
 ```
 
@@ -94,10 +101,30 @@ max.withdrawals.mgd <-
 
 ```{r create.a.dataframe.from.scraped.data}
 #4
+max.withdrawls.month <- Durham.webpage %>%
+ html_nodes("correct_code") %>%
+ html_text()
+#I think this is the right code, but I can't get the scraper to select the correct columns, grrr, so that specific scraper text is missing!
 
+#max.daily.withdrawals.2022 <- 2022
+#Date <- as.Date(my(paste(max.withdrawals.month, "-", max.daily.withdrawals.2022)))
+#class (Date)
+#I can't get this chunk to run either because I can't get #4 to run without that correct scraper code. 
 
+#Durham.water.df <- data_frame("Water System Name" = water.system.name,
+          #                               "Ownership" = ownership,
+          #                               "Max Withdrawls Total" = as.numeric(max.withdrawals.mgd),
+          #                               "Max Withdrawls Month" = max.withdrawls.month,
+          #                               "Max Withdrawls Year" = max.withdrawls.year,
+          #                               "Date" = as.Date(my(paste(max.withdrawls.month, "-", #max.withdrawls.year)))
 
 #5
+ggplot(Durham.water.df,aes(x=max.withdrawls.month,y=max.withdrawals.mgd)) +
+geom_point() +
+labs(title = paste("2020 Max Withdrawls for", water.system.name),
+subtitle = paste("PSWID", pswid),
+y="Max Withdrawls",
+x="Month")
 
 
 ```
