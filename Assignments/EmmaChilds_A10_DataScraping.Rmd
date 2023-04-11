@@ -101,7 +101,7 @@ max.withdrawals.mgd <- Durham.webpage %>%
 
 ```{r create.a.dataframe.from.scraped.data}
 #4
-max.withdrawls.month <- Durham.webpage %>%
+max.withdrawals.month <- Durham.webpage %>%
  html_nodes("correct_code") %>%
  html_text()
 #I think this is the right code, but I can't get the scraper to select the correct columns, grrr, so that specific scraper text is missing!
@@ -113,17 +113,18 @@ max.withdrawls.month <- Durham.webpage %>%
 
 #Durham.water.df <- data_frame("Water System Name" = water.system.name,
           #                               "Ownership" = ownership,
-          #                               "Max Withdrawls Total" = as.numeric(max.withdrawals.mgd),
-          #                               "Max Withdrawls Month" = max.withdrawls.month,
-          #                               "Max Withdrawls Year" = max.withdrawls.year,
-          #                               "Date" = as.Date(my(paste(max.withdrawls.month, "-", #max.withdrawls.year)))
+          #                               "Max Withdrawals Total" = as.numeric(max.withdrawals.mgd),
+          #                               "Max Withdrawals Month" = max.withdrawals.month,
+          #                               "Max Withdrawals Year" = max.withdrawals.year,
+          #                               "Date" = as.Date(my(paste(max.withdrawals.month, "-", #max.withdrawals.year)))
+#I can't run this because I still can't get my max.withdrawals.month to run, but I think I still understand the concept!
 
 #5
-ggplot(Durham.water.df,aes(x=max.withdrawls.month,y=max.withdrawals.mgd)) +
+ggplot(Durham.water.df,aes(x=max.withdrawals.month,y=max.withdrawals.mgd)) +
 geom_point() +
-labs(title = paste("2020 Max Withdrawls for", water.system.name),
+labs(title = paste("2022 Max Withdrawals for Durham", water.system.name),
 subtitle = paste("PSWID", pswid),
-y="Max Withdrawls",
+y="Max Withdrawals",
 x="Month")
 
 
